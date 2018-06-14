@@ -4,7 +4,6 @@ from config import *
 from info import create_app, db
 
 app = create_app(DevelopmenConfig)
-
 manager = Manager(app)
 Migrate(app, db)
 manager.add_command("db", MigrateCommand)
