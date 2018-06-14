@@ -13,3 +13,11 @@ class Config(object):
     PERMANENT_SESSION_LIFETIME = 86400
 
 
+class DevelopmenConfig(Config):
+    """开发模式下配置"""
+    DEBUG = True
+
+
+class ProductionConfig(Config):
+    """生产模式下配置"""
+    pass
