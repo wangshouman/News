@@ -20,9 +20,10 @@ def create_app(config_name):
     redis_store = redis.StrictRedis(host=config_name.REDIS_HOST, port=config_name.REDIS_POST)
     CSRFProtect(app)
     Session(app)
+    from info.modules.index import index_blu
+    app.register_blueprint(index_blu)
 
     return app
-
 
 def setup_log(config_name):
     """配置日志"""

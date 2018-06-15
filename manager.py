@@ -8,10 +8,6 @@ manager = Manager(app)
 Migrate(app, db)
 manager.add_command("db", MigrateCommand)
 
-# @app.route('/')
-# def index():
-#     """路由地址"""
-#     return "Hello world"
-
 if __name__ == '__main__':
+    print(app.url_map)
     manager.run()
