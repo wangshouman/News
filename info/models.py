@@ -69,6 +69,15 @@ class User(BaseModel, db.Model):
     def check_passowrd(self, password):
         return check_password_hash(self.password_hash, password)
 
+    def to_index_dict(self):
+        resp_dict = {
+            "id": self.id,
+            "nick_name": self.nick_name,
+            "avatar_url": constants.QINIU_DOMIN_PREFIX + self.avatar_url if self.avatar_url else "",
+            "mobile": self.mobile
+        }
+        return resp_dict
+
     def to_dict(self):
         resp_dict = {
             "id": self.id,

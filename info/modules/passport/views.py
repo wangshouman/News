@@ -14,10 +14,38 @@ from info.utils.response_code import RET
 from info.modules.passport import passport_blu
 
 
-@passport_blu.route('/login')
+@passport_blu.route('/login', methods=["POST"])
 def login():
-    pass
-    return jsonify(errno=RET.OK, errmsg="发送成功！")
+    # 1.获取参数
+    json_data = request.json
+    mobile = json_data.get("mobile")
+    password = json_data.get("password")
+    # 1.1 校验数据的完整性
+    if not all([mobile, password]):
+        return jsonify(errno=RET.NODATA, errmsg="参数错误")
+
+    # 2.从数据库查询出指定的用户
+    try:
+        user = User.query.filter_by(mobile=mobile).first()
+    except Exception as e:
+        current_app.logger.error(e)
+        return jsonify(errno=RET.DBERR, errmsg="数据库读取错误")
+    if not user:
+        return jsonify(errno=RET.NODATA, errmsg="用户不存在,请先注册")
+
+    # 3,校验密码
+    if not user.check_passowrd(password):
+        return jsonify(errno=RET.DATAERR, errmsg="密码错误")
+
+    # 4.设置session的值
+    session["user_id"] = user.id
+    session["user.nick_name"] = user.nick_name
+    try:
+        db.session.commit()
+    except Exception as e:
+        current_app.logger.error(e)
+
+    return jsonify(errno=RET.OK, errmsg="ok")
 
 
 @passport_blu.route('/register', methods=["POST"])
@@ -25,7 +53,7 @@ def register():
     # 1.获取手机号,验证码
     json_data = request.json
     mobile = json_data.get("mobile")
-    sms_code = json_data.get("sms_code")
+    sms_code = json_data.get("smscode")
     password = json_data.get("password")
 
     # 2验证参数的完整性
@@ -56,7 +84,7 @@ def register():
         return jsonify(errno=RET.DATAERR, errmsg="删除操作失败")
     # 4. 用户注册
     try:
-        user_model = User.query.filtet_by(mobile=mobile).first()
+        user_model = User.query.filter_by(mobile=mobile).first()
     except Exception as e:
         current_app.logger.error(e)
         return jsonify(errno=RET.DATAERR, errmsf="数据库读取失败")
@@ -82,7 +110,7 @@ def register():
     # 5.设置登录
     try:
         session['nick_name'] = mobile
-        session['user_id'] = user_model.id
+        session['user_id'] = user.id
     except Exception as e:
         current_app.logger.error(e)
         return jsonify(errno=RET.DBERR, errmsg="session 保存redis失败")
