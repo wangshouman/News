@@ -8,7 +8,7 @@ from flask_session import Session
 from config import *
 
 db = SQLAlchemy()
-redis_store = None
+redis_store = None  # type:redis.StrictRedis
 
 
 def create_app(config_name):
@@ -17,11 +17,13 @@ def create_app(config_name):
     app.config.from_object(config_name)
     db.init_app(app)
     global redis_store
-    redis_store = redis.StrictRedis(host=config_name.REDIS_HOST, port=config_name.REDIS_POST)
-    CSRFProtect(app)
+    redis_store = redis.StrictRedis(host=config_name.REDIS_HOST, port=config_name.REDIS_POST, decode_responses=True)
+    # CSRFProtect(app)
     Session(app)
     from info.modules.index import index_blu
     app.register_blueprint(index_blu)
+    from info.modules.passport import passport_blu
+    app.register_blueprint(passport_blu)
 
     return app
 

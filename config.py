@@ -10,7 +10,7 @@ class Config(object):
     REDIS_POST = 6379
     SESSION_TYPE = "redis"
     SESSION_USE_SIGNER = True
-    redis_store = redis.StrictRedis(host=REDIS_HOST, port=REDIS_POST)
+    SESSION_REDIS = redis.StrictRedis(host=REDIS_HOST, port=REDIS_POST)
     PERMANENT_SESSION_LIFETIME = 86400
     LOG_LEVEL = logging.DEBUG
 

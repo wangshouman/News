@@ -3,7 +3,8 @@ from flask import current_app
 from info.modules.index import index_blu
 from flask import render_template
 
-@index_blu.route('/index')
+
+@index_blu.route('/')
 def index():
     """路由地址"""
     return render_template('news/index.html')
