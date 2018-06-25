@@ -14,6 +14,15 @@ from info.utils.response_code import RET
 from info.modules.passport import passport_blu
 
 
+@passport_blu.route('/logout', methods=["POST"])
+def logout():
+    session.pop("user_id", None)
+    session.pop("nick_name", None)
+    session.pop("is_admin", None)
+
+    return jsonify(errno=RET.OK, errmsg="Ok")
+
+
 @passport_blu.route('/login', methods=["POST"])
 def login():
     # 1.获取参数
@@ -30,16 +39,16 @@ def login():
     except Exception as e:
         current_app.logger.error(e)
         return jsonify(errno=RET.DBERR, errmsg="数据库读取错误")
-    if not user:
-        return jsonify(errno=RET.NODATA, errmsg="用户不存在,请先注册")
 
     # 3,校验密码
-    if not user.check_passowrd(password):
-        return jsonify(errno=RET.DATAERR, errmsg="密码错误")
+
+    if not user or not user.check_passowrd(password):
+        return jsonify(errno=RET.NODATA, errmsg="用户不存在,请先注册")
 
     # 4.设置session的值
     session["user_id"] = user.id
-    session["user.nick_name"] = user.nick_name
+    session["nick_name"] = user.nick_name
+    # session["is_admin"] = True
     try:
         db.session.commit()
     except Exception as e:

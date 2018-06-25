@@ -1,0 +1,45 @@
+{% extends "news/base.html" %}
+
+{% block titleBlock %}
+    用户中心
+{% endblock %}
+
+{% block scriptBlock %}
+    <script type="text/javascript" src="../../static/news/js/jquery.form.min.js"></script>
+{% endblock %}
+
+{% block contentBlock %}
+    <div class="user_menu_con fl">
+        <div class="user_center_pic">
+            <img src="
+                    {% if data.user.avatar_url %}{{ data.user.avatar_url }}{% else %}../../static/news/images/person01.png{% endif %}"
+                 alt="用户图片">
+        </div>
+        <div class="user_center_name">用户张山</div>
+
+        <ul class="option_list">
+            <li class="active"><a href="{{ url_for("user.base_info") }}" target="main_frame">基本资料</a></li>
+            <li><a href="{{ url_for("user.pic_info") }}" target="main_frame">头像设置</a></li>
+            <li><a href="../../static/news/html/user_follow.html" target="main_frame">我的关注</a></li>
+            <li><a href="{{ url_for("user.pass_info") }}" target="main_frame">密码修改</a></li>
+            <li><a href="{{ url_for("user.collection") }}" target="main_frame">我的收藏</a></li>
+            <li><a href="{{ url_for("user.news_release") }}" target="main_frame">新闻发布</a></li>
+            <li><a href="{{ url_for("user.news_list") }}" target="main_frame">新闻列表</a></li>
+        </ul>
+    </div>
+
+    <div class="user_con fr">
+        <iframe src="{{ url_for("user.base_info") }}" frameborder="0" name="main_frame" class="main_frame"
+                id="main_frame"></iframe>
+    </div>
+{% endblock %}
+
+{% block rankBlock %}
+
+{% endblock %}
+
+
+
+
+
+

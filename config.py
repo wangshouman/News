@@ -3,7 +3,7 @@ import redis
 
 
 class Config(object):
-    SECRET_KEY = "itheima"
+    SECRET_KEY = "yyZVXT4f9GdyfVyovrHH07D0NI2+lZ+F"
     SQLALCHEMY_DATABASE_URI = "mysql://root:mysql@127.0.0.1:3306/information"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     REDIS_HOST = "127.0.0.1"

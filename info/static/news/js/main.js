@@ -121,6 +121,9 @@ $(function(){
             url: "/passport/login",
             method: "post",
             data: JSON.stringify(params),
+            headers: {
+                "X-CSRFToken": getCookie("csrf_token")
+            },
             contentType: "application/json",
             success: function (resp) {
                 if (resp.errno == "0") {
@@ -179,6 +182,9 @@ $(function(){
             url: "/passport/register",
             type: "post",
             data: JSON.stringify(params),
+            headers: {
+                "X-CSRFToken": getCookie("csrf_token")
+            },
             contentType: "application/json",
             success: function (resp) {
                 if (resp.errno == "0") {
@@ -193,6 +199,24 @@ $(function(){
 
     })
 })
+
+function logout() {
+    $.ajax({
+        url: "/passport/logout",
+        type: "post",
+        contentType: "application/json",
+        headers: {
+            "X-CSRFToken": getCookie("csrf_token")
+        },
+        success: function (resp) {
+            // 刷新当前界面
+            location.reload()
+        }
+    })
+}
+
+
+
 
 var imageCodeId = ""
 
@@ -241,6 +265,9 @@ function sendSMSCode() {
         method: "POST",
         // 请求内容
         data: JSON.stringify(params),
+        headers: {
+            "X-CSRFToken": getCookie("csrf_token")
+        },
         // 请求内容的数据类型
         contentType: "application/json",
         // 响应数据的格式

@@ -1,5 +1,5 @@
 from logging.handlers import RotatingFileHandler
-
+from flask_wtf.csrf import generate_csrf
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import redis
@@ -18,12 +18,35 @@ def create_app(config_name):
     db.init_app(app)
     global redis_store
     redis_store = redis.StrictRedis(host=config_name.REDIS_HOST, port=config_name.REDIS_POST, decode_responses=True)
-    # CSRFProtect(app)
+    CSRFProtect(app)
     Session(app)
+
+    @app.after_request
+    def after_request(response):
+        csrf_token = generate_csrf()
+        response.set_cookie("csrf_token", csrf_token)
+        return response
+
     from info.modules.index import index_blu
     app.register_blueprint(index_blu)
+
     from info.modules.passport import passport_blu
     app.register_blueprint(passport_blu)
+
+    from info.modules.news import news_blue
+    app.register_blueprint(news_blue)
+
+    from info.modules.profile import profile_blu
+    app.register_blueprint(profile_blu)
+
+    from info.modules.admin import admin_blu
+    app.register_blueprint(admin_blu)
+
+    # 导入自定义文件名
+    from info.utils.common import do_index_class
+    # 注册自定义函数
+    app.add_template_filter(do_index_class, "index_class")
+
 
     return app
 
