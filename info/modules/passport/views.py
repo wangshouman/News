@@ -172,9 +172,9 @@ def sms_code():
     result = random.randint(0, 999999)
     sms_code = "%06d" % result
     current_app.logger.debug(" 验证码是:%s" % sms_code)
-    # result = CCP().send_template_sms(mobile, [sms_code, constants.SMS_CODE_REDIS_EXPIRES / 60], "1")
-    # if result != "000000":
-    #     return jsonify(errno=RET.NODATA,errmsg="短信发送失败")
+    result = CCP().send_template_sms(mobile, [sms_code, constants.SMS_CODE_REDIS_EXPIRES / 60], "1")
+    if result != "000000":
+        return jsonify(errno=RET.NODATA, errmsg="短信发送失败")
 
     # 4.存储短信验证码
     try:
