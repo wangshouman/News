@@ -7,7 +7,7 @@ from flask import session
 
 from info import constants, db
 from info import redis_store
-from info.lib.yuntongxun.sms import CCP
+from info.libs.yuntongxun.sms import CCP
 from info.models import User
 from info.utils.captcha.captcha import captcha
 from info.utils.response_code import RET

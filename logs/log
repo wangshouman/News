@@ -15224,3 +15224,22 @@ INFO _internal.py:88 127.0.0.1 - - [01/Jul/2018 17:50:37] "GET / HTTP/1.1" 200 -
 INFO _internal.py:88 127.0.0.1 - - [01/Jul/2018 17:50:37] "GET /news_list?cid=1&page=1 HTTP/1.1" 200 -
 INFO _internal.py:88 127.0.0.1 - - [01/Jul/2018 17:50:39] "GET /static/news/images/shutoff.png HTTP/1.1" 304 -
 INFO _internal.py:88 127.0.0.1 - - [01/Jul/2018 17:52:01] "GET /passport/image_code?code_id=7899a0f2-a951-458e-9c94-bb07f6e2093e HTTP/1.1" 200 -
+INFO _internal.py:88  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:88  * Restarting with stat
+WARNING _internal.py:88  * Debugger is active!
+INFO _internal.py:88  * Debugger PIN: 396-297-528
+INFO _internal.py:88 127.0.0.1 - - [01/Jul/2018 21:44:19] "GET / HTTP/1.1" 200 -
+INFO _internal.py:88 127.0.0.1 - - [01/Jul/2018 21:44:19] "GET / HTTP/1.1" 200 -
+INFO _internal.py:88 127.0.0.1 - - [01/Jul/2018 21:44:20] "GET /static/news/images/hit_icon.png HTTP/1.1" 304 -
+INFO _internal.py:88 127.0.0.1 - - [01/Jul/2018 21:44:20] "GET /news_list?cid=1&page=1 HTTP/1.1" 200 -
+INFO _internal.py:88 127.0.0.1 - - [01/Jul/2018 21:44:20] "GET /static/news/images/clock.png HTTP/1.1" 304 -
+INFO _internal.py:88 127.0.0.1 - - [01/Jul/2018 21:44:21] "GET /news_list?cid=2&page=1 HTTP/1.1" 200 -
+INFO _internal.py:88 127.0.0.1 - - [01/Jul/2018 21:44:21] "GET /news_list?cid=3&page=1 HTTP/1.1" 200 -
+INFO _internal.py:88 127.0.0.1 - - [01/Jul/2018 21:44:22] "GET /news_list?cid=4&page=1 HTTP/1.1" 200 -
+INFO _internal.py:88 127.0.0.1 - - [01/Jul/2018 21:44:23] "GET /news_list?cid=5&page=1 HTTP/1.1" 200 -
+INFO _internal.py:88  * Detected change in '/home/python/Desktop/coding/flask_information10/information10/info/modules/passport/views.py', reloading
+INFO _internal.py:88  * Restarting with stat
+WARNING _internal.py:88  * Debugger is active!
+INFO _internal.py:88  * Debugger PIN: 396-297-528
+INFO _internal.py:88  * Detected change in '/home/python/Desktop/coding/flask_information10/information10/info/libs/yuntongxun/sms.py', reloading
+INFO _internal.py:88  * Restarting with stat
