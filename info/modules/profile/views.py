@@ -136,7 +136,7 @@ def news_release():
     news.category_id = category_id
     news.content = content
     news.user_id = user.id
-    news.index_image_url = constants.QINIU_DOMIN_PREFIX + image_key
+    news.index_image_url = constants.MY_QINIU_DOMIN_PREFIX + image_key
 
     # 设置状态
     news.status = 1  # 代码正在审核中

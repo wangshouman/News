@@ -48,7 +48,7 @@ def login():
     # 4.设置session的值
     session["user_id"] = user.id
     session["nick_name"] = user.nick_name
-    # session["is_admin"] = True
+    session["is_admin"] = user.is_admin
     try:
         db.session.commit()
     except Exception as e:

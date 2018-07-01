@@ -6,6 +6,8 @@ SMS_CODE_REDIS_EXPIRES = 300
 
 # 七牛空间域名
 QINIU_DOMIN_PREFIX = "http://oyucyko3w.bkt.clouddn.com/"
+# 七牛空间域名
+MY_QINIU_DOMIN_PREFIX = "http://pavbo7kws.bkt.clouddn.com/"
 
 # 首页展示最多的新闻数量
 HOME_PAGE_MAX_NEWS = 10

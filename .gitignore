@@ -6,6 +6,7 @@ logs/log*
 # C extensions
 *.so
 .idea/
+.qiniu*
 # Distribution / packaging
 .Python
 build/
