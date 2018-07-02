@@ -16,6 +16,7 @@ from info.modules.passport import passport_blu
 
 @passport_blu.route('/logout', methods=["POST"])
 def logout():
+
     session.pop("user_id", None)
     session.pop("nick_name", None)
     session.pop("is_admin", None)
@@ -129,16 +130,7 @@ def register():
 
 @passport_blu.route('/sms_code', methods=["POST"])
 def sms_code():
-    """
-    1. 接收参数并判断是否有参数
-    2. 校验手机号是否正确
-    3.校验图片编码取redis中查询
-    4.进行比较
-    5.发送短信
-    6.redis保存短信验证码
-    7.返回发送成功响应
-    :return:
-    """
+    """验证码功能"""
     # 1. 接收参数并判断是否有参数
     json_data = request.json
     mobile = json_data.get("mobile")

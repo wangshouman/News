@@ -1,4 +1,7 @@
 from logging.handlers import RotatingFileHandler
+
+from flask import g
+from flask import render_template
 from flask_wtf.csrf import generate_csrf
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
@@ -26,6 +29,15 @@ def create_app(config_name):
         csrf_token = generate_csrf()
         response.set_cookie("csrf_token", csrf_token)
         return response
+
+    from info.utils.common import user_login_data
+    @app.errorhandler(404)
+    @user_login_data
+    def page_login_data(error):
+        user = g.user
+        data = {"user": user.to_dict() if user else None}
+        return render_template('news/404.html', data=data)
+
 
     from info.modules.index import index_blu
     app.register_blueprint(index_blu)
