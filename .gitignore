@@ -2,11 +2,10 @@
 __pycache__/
 *.py[cod]
 *$py.class
-logs/log*
+
 # C extensions
 *.so
-.idea/
-.qiniu*
+
 # Distribution / packaging
 .Python
 build/
@@ -16,7 +15,6 @@ downloads/
 eggs/
 .eggs/
 lib/
-migrations
 lib64/
 parts/
 sdist/
@@ -32,7 +30,7 @@ MANIFEST
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
-migrations
+
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
@@ -47,6 +45,7 @@ nosetests.xml
 coverage.xml
 *.cover
 .hypothesis/
+.pytest_cache/
 
 # Translations
 *.mo
@@ -54,9 +53,8 @@ coverage.xml
 
 # Django stuff:
 *.log
-.static_storage/
-.media/
 local_settings.py
+db.sqlite3
 
 # Flask stuff:
 instance/
